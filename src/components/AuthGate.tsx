@@ -4,10 +4,20 @@ import GuestForm from './GuestForm'
 import LoginForm from './LoginForm'
 import SignupForm from './SignupForm'
 
-type Mode = 'choose' | 'guest' | 'login' | 'signup'
+export type AuthMode = 'choose' | 'guest' | 'login' | 'signup'
 
-export default function AuthGate() {
-  const [mode, setMode] = useState<Mode>('choose')
+// Pass `mode` to control which screen shows (e.g. to delay the switch for an animation);
+// otherwise AuthGate manages it itself.
+export default function AuthGate({ mode: controlledMode, onModeChange }: {
+  mode?: AuthMode
+  onModeChange?: (mode: AuthMode) => void
+}) {
+  const [ownMode, setOwnMode] = useState<AuthMode>('choose')
+  const mode = controlledMode ?? ownMode
+  function setMode(next: AuthMode) {
+    setOwnMode(next)
+    onModeChange?.(next)
+  }
 
   if (mode === 'guest')  return <GuestForm onBack={() => setMode('choose')} />
   if (mode === 'login')  return <LoginForm onBack={() => setMode('choose')} onSignup={() => setMode('signup')} />

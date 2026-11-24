@@ -261,7 +261,7 @@ export default function PomodoroRoom({
 
           <div className="flex items-center gap-2">
             <span className={`w-2 h-2 rounded-full ${running ? 'animate-pulse' : ''}`}
-              style={{ background: isFocus ? 'var(--accent)' : '#30D158' }} />
+              style={{ background: isFocus ? 'var(--accent)' : 'var(--break)' }} />
             <span className="text-[11px] font-semibold uppercase tracking-[0.12em]" style={{ color: 'var(--fg-2)' }}>
               {isFocus ? 'Focus' : 'Break'}
             </span>
@@ -271,7 +271,7 @@ export default function PomodoroRoom({
             <svg className="w-full h-full -rotate-90" viewBox="0 0 100 100">
               <circle cx="50" cy="50" r="45" fill="none" stroke="var(--border)" strokeWidth="3.5" />
               <circle cx="50" cy="50" r="45" fill="none"
-                stroke={isFocus ? 'var(--accent)' : '#30D158'} strokeWidth="3.5"
+                stroke={isFocus ? 'var(--accent)' : 'var(--break)'} strokeWidth="3.5"
                 strokeDasharray={C} strokeDashoffset={C * (1 - progress / 100)}
                 strokeLinecap="round"
                 style={{ transition: 'stroke-dashoffset 1s linear, stroke 0.5s ease' }}

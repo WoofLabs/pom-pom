@@ -3,7 +3,6 @@ import { useEffect, useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { motion } from 'framer-motion'
 import { createClient } from '@/lib/supabase/client'
-import ThemeToggle from '@/components/ThemeToggle'
 import UserAvatar from '@/components/UserAvatar'
 import type { User } from '@supabase/supabase-js'
 
@@ -100,11 +99,10 @@ export default function LobbyPage() {
   return (
     <div className="min-h-screen flex flex-col" style={{ background: 'var(--bg)' }}>
       <header className="glass sticky top-0 z-10 flex items-center justify-between px-4 md:px-8 py-4 border-b" style={{ borderColor: 'var(--border)' }}>
-        <span className="text-[17px] font-semibold tracking-tight" style={{ color: 'var(--fg)', letterSpacing: '-0.02em' }}>lockdin</span>
+        <span className="font-display text-[18px] font-bold tracking-tight" style={{ color: 'var(--fg)', letterSpacing: '-0.02em' }}>lockdin</span>
         <div className="flex items-center gap-2 md:gap-3">
           <UserAvatar name={displayName} size="sm" />
           <span className="text-sm font-medium hidden sm:block" style={{ color: 'var(--fg-2)' }}>{displayName}</span>
-          <ThemeToggle />
         </div>
       </header>
 

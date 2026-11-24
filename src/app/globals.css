@@ -4,6 +4,7 @@
 
 /* ── Apple-style design tokens ── */
 :root {
+  color-scheme: light dark;
   --bg:        #F5F5F7;
   --bg-2:      #FFFFFF;
   --fg:        #1D1D1F;
@@ -12,6 +13,7 @@
   --border:    rgba(0, 0, 0, 0.08);
   --accent:    #0071E3;
   --accent-h:  #0077ED;
+  --break:     #FF9500;   /* orange, blue's complement: break phase */
   --avatar-bg: #0071E3;
   --avatar-fg: #FFFFFF;
   --shadow-sm: 0 1px 3px rgba(0,0,0,0.08), 0 1px 2px rgba(0,0,0,0.04);
@@ -19,20 +21,24 @@
   --shadow-lg: 0 12px 40px rgba(0,0,0,0.10), 0 2px 8px rgba(0,0,0,0.04);
 }
 
-.dark {
-  --bg:        #000000;
-  --bg-2:      #1C1C1E;
-  --fg:        #F5F5F7;
-  --fg-2:      #98989D;
-  --card:      rgba(28, 28, 30, 0.80);
-  --border:    rgba(255, 255, 255, 0.10);
-  --accent:    #2997FF;
-  --accent-h:  #3DA0FF;
-  --avatar-bg: #1A6FD4;
-  --avatar-fg: #FFFFFF;
-  --shadow-sm: 0 1px 3px rgba(0,0,0,0.4);
-  --shadow-md: 0 4px 16px rgba(0,0,0,0.4);
-  --shadow-lg: 0 12px 40px rgba(0,0,0,0.5);
+/* Follows the user's system light/dark setting */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg:        #000000;
+    --bg-2:      #1C1C1E;
+    --fg:        #F5F5F7;
+    --fg-2:      #98989D;
+    --card:      rgba(28, 28, 30, 0.80);
+    --border:    rgba(255, 255, 255, 0.10);
+    --accent:    #2997FF;
+    --accent-h:  #3DA0FF;
+    --break:     #FF9F0A;
+    --avatar-bg: #1A6FD4;
+    --avatar-fg: #FFFFFF;
+    --shadow-sm: 0 1px 3px rgba(0,0,0,0.4);
+    --shadow-md: 0 4px 16px rgba(0,0,0,0.4);
+    --shadow-lg: 0 12px 40px rgba(0,0,0,0.5);
+  }
 }
 
 /* ── Base ── */
@@ -77,10 +83,75 @@ body {
 ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 99px; }
 
 /* ── Focus ring ── */
-:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-radius: 6px; }
+/* Text fields skip the ring and show focus with their own subtle border */
+:focus-visible:not(input):not(textarea) { outline: 2px solid var(--accent); outline-offset: 2px; border-radius: 6px; }
+input:focus-visible, textarea:focus-visible { outline: none; }
 
 /* ── No tap flash ── */
 * { -webkit-tap-highlight-color: transparent; }
+
+/* ── Home wordmark: solid button blue, fading out toward the bottom of the letters ── */
+.wordmark {
+  font-family: var(--font-brand), var(--font-inter), system-ui, sans-serif;
+}
+.wordmark-flow {
+  /* Full Create Account blue (--accent) across the top, easing to transparent at the bottom */
+  background-image: linear-gradient(in oklab to bottom,
+    var(--accent) 15%,
+    color-mix(in oklab, var(--accent) 70%, transparent) 50%,
+    color-mix(in oklab, var(--accent) 25%, transparent) 80%,
+    transparent 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+/* ── Home ocean waves (shown once an auth option is picked) ──
+   Per-layer height, opacity, softness and speeds are set in OceanWaves.tsx.
+   Only `transform` is animated here, so the GPU just slides pre-drawn layers (no repaints). */
+.ocean { --wave-w: max(1440px, 100vw); }
+
+/* Wave shape: a mask two tiles wider than the screen, sliding left by exactly two tiles.
+   Two, not one: the colour strip inside rides along with it and repeats every 2 tiles, so the
+   loop must cover a whole multiple of both patterns or the colours jump when it restarts. */
+.ocean-roller {
+  position: absolute;
+  inset: 0 auto 0 0;
+  width: calc(100% + 2 * var(--wave-w));
+  -webkit-mask-size: var(--wave-w) 100%;
+  mask-size: var(--wave-w) 100%;
+  -webkit-mask-repeat: repeat-x;
+  mask-repeat: repeat-x;
+  animation: ocean-roll linear infinite;
+  will-change: transform;
+}
+@keyframes ocean-roll {
+  from { transform: translateX(0); }
+  to   { transform: translateX(calc(-2 * var(--wave-w))); }
+}
+
+/* Moving colours: a wide repeating gradient strip sliding by exactly one colour tile */
+.ocean-colors {
+  position: absolute;
+  inset: 0 auto 0 0;
+  width: calc(6 * var(--wave-w));
+  background-image: linear-gradient(90deg, #0A3D91, #0071E3, #5AC8FA, #0071E3, #0A3D91);
+  background-size: calc(2 * var(--wave-w)) 100%;
+  background-repeat: repeat-x;
+  animation: ocean-colors 3s linear infinite;
+  will-change: transform;
+}
+/* Orange version: blue's complement, same flow (deep amber → Apple orange → light apricot) */
+.ocean-colors-orange {
+  background-image: linear-gradient(90deg, #B34700, #FF9500, #FFC46B, #FF9500, #B34700);
+}
+@keyframes ocean-colors {
+  from { transform: translateX(0); }
+  to   { transform: translateX(calc(-2 * var(--wave-w))); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ocean-roller, .ocean-colors { animation: none; }
+}
 
 /* ── Utility: muted text ── */
 .text-muted { color: var(--fg-2); }

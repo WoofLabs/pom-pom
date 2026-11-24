@@ -4,7 +4,6 @@ import { useRouter, useParams } from 'next/navigation'
 import { createClient } from '@/lib/supabase/client'
 import PomodoroSetup from '@/components/PomodoroSetup'
 import Chat from '@/components/Chat'
-import ThemeToggle from '@/components/ThemeToggle'
 import UserAvatar from '@/components/UserAvatar'
 import type { User } from '@supabase/supabase-js'
 import type { TimerConfig } from '@/lib/types'
@@ -368,13 +367,13 @@ export default function RoomPage() {
           <button onClick={() => router.push('/lobby')} style={{ color: 'var(--fg-2)' }}>
             <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7"/></svg>
           </button>
-          <span className="text-[15px] font-semibold tracking-tight" style={{ color: 'var(--fg)', letterSpacing: '-0.02em' }}>lockdin</span>
+          <span className="font-display text-[16px] font-bold tracking-tight" style={{ color: 'var(--fg)', letterSpacing: '-0.02em' }}>lockdin</span>
           <span className="text-[11px] font-medium px-2 py-0.5 rounded-full" style={{ background: 'var(--bg)', color: 'var(--fg-2)' }}>
             #{slug}
           </span>
         </div>
 
-        {/* Right: presence + theme */}
+        {/* Right: presence */}
         <div className="relative flex items-center gap-3">
           <button onClick={() => { setShowOnline(p => !p); setShowProfile(false) }}
             className="flex items-center gap-1.5 px-3 py-1.5 rounded-full"
@@ -403,7 +402,6 @@ export default function RoomPage() {
               }
             </div>
           )}
-          <ThemeToggle />
         </div>
       </header>
 
@@ -426,7 +424,7 @@ export default function RoomPage() {
               {/* Phase + status */}
               <div className="flex items-center gap-2">
                 <span className={`w-2 h-2 rounded-full ${!roomState?.paused ? 'animate-pulse' : ''}`}
-                  style={{ background: isFocus ? 'var(--accent)' : '#30D158' }} />
+                  style={{ background: isFocus ? 'var(--accent)' : 'var(--break)' }} />
                 <span className="text-[11px] font-semibold uppercase tracking-[0.12em]" style={{ color: 'var(--fg-2)' }}>
                   {roomState?.paused ? 'Paused' : isFocus ? 'Focus' : 'Break'}
                 </span>
@@ -437,7 +435,7 @@ export default function RoomPage() {
                 <svg className="w-full h-full -rotate-90" viewBox="0 0 100 100">
                   <circle cx="50" cy="50" r="45" fill="none" stroke="var(--border)" strokeWidth="3.5" />
                   <circle cx="50" cy="50" r="45" fill="none"
-                    stroke={isFocus ? 'var(--accent)' : '#30D158'} strokeWidth="3.5"
+                    stroke={isFocus ? 'var(--accent)' : 'var(--break)'} strokeWidth="3.5"
                     strokeDasharray={C} strokeDashoffset={C * (1 - progress / 100)}
                     strokeLinecap="round"
                     style={{ transition: 'stroke-dashoffset 1s linear, stroke 0.5s ease' }} />

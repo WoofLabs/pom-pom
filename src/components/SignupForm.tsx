@@ -49,7 +49,7 @@ export default function SignupForm({ onBack, onLogin }: { onBack: () => void; on
     <form onSubmit={handleSignup} className="glass rounded-card p-8 w-[340px] flex flex-col gap-4" style={{ boxShadow: 'var(--shadow-lg)' }}>
       <div>
         <h2 className="text-[17px] font-semibold" style={{ color: 'var(--fg)' }}>Create Account</h2>
-        <p className="text-sm mt-0.5" style={{ color: 'var(--fg-2)' }}>Join Hillsum and start focusing.</p>
+        <p className="text-sm mt-0.5" style={{ color: 'var(--fg-2)' }}>Join lockdin and start focusing.</p>
       </div>
 
       {error && <p className="text-red-500 text-xs">{error}</p>}

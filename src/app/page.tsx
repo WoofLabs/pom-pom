@@ -32,14 +32,14 @@ export default function Home() {
 
   if (checking) return (
     <div className="min-h-screen flex items-center justify-center" style={{ background: 'var(--bg)' }}>
-      <span className="text-2xl font-semibold tracking-tight" style={{ color: 'var(--fg-2)', letterSpacing: '-0.03em' }}>hillsum</span>
+      <span className="text-2xl font-semibold tracking-tight" style={{ color: 'var(--fg-2)', letterSpacing: '-0.03em' }}>lockdin</span>
     </div>
   )
 
   return (
     <div className="min-h-screen flex flex-col" style={{ background: 'var(--bg)' }}>
       <header className="flex items-center justify-between px-8 py-5">
-        <span className="text-[17px] font-semibold tracking-tight" style={{ color: 'var(--fg)', letterSpacing: '-0.02em' }}>hillsum</span>
+        <span className="text-[17px] font-semibold tracking-tight" style={{ color: 'var(--fg)', letterSpacing: '-0.02em' }}>lockdin</span>
         <ThemeToggle />
       </header>
 

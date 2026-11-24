@@ -1,6 +1,6 @@
-# Pom Pom
+# lockdin
 
-**Pom Pom** is a small web app for **remote study groups**: shared focus rooms with a Pomodoro-style timer, lightweight chat, and **tracked focus time** (stored per profile) so everyone can see effort add up over time—even when you are far apart.
+**lockdin** is a small web app for **remote study groups**: shared focus rooms with a Pomodoro-style timer, lightweight chat, and **tracked focus time** (stored per profile) so everyone can see effort add up over time—even when you are far apart.
 
 ## Stack
 

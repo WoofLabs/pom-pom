@@ -100,7 +100,7 @@ export default function LobbyPage() {
   return (
     <div className="min-h-screen flex flex-col" style={{ background: 'var(--bg)' }}>
       <header className="glass sticky top-0 z-10 flex items-center justify-between px-4 md:px-8 py-4 border-b" style={{ borderColor: 'var(--border)' }}>
-        <span className="text-[17px] font-semibold tracking-tight" style={{ color: 'var(--fg)', letterSpacing: '-0.02em' }}>hillsum</span>
+        <span className="text-[17px] font-semibold tracking-tight" style={{ color: 'var(--fg)', letterSpacing: '-0.02em' }}>lockdin</span>
         <div className="flex items-center gap-2 md:gap-3">
           <UserAvatar name={displayName} size="sm" />
           <span className="text-sm font-medium hidden sm:block" style={{ color: 'var(--fg-2)' }}>{displayName}</span>
@@ -145,7 +145,7 @@ export default function LobbyPage() {
                 style={{ background: 'var(--bg)', border: '1px solid var(--border)' }}
                 onFocusCapture={e => (e.currentTarget.style.borderColor = 'var(--accent)')}
                 onBlurCapture={e => (e.currentTarget.style.borderColor = 'var(--border)')}>
-                <span className="pl-3 text-xs whitespace-nowrap select-none" style={{ color: 'var(--fg-2)' }}>hillsum.app/room/</span>
+                <span className="pl-3 text-xs whitespace-nowrap select-none" style={{ color: 'var(--fg-2)' }}>lockdin.app/room/</span>
                 <input value={createName} onChange={e => handleNameInput(e.target.value)}
                   placeholder="my-focus-squad" maxLength={40} autoComplete="off" spellCheck={false}
                   className="flex-1 py-2.5 pr-3 bg-transparent outline-none text-sm"
@@ -153,7 +153,7 @@ export default function LobbyPage() {
               </div>
               {createName && (
                 <p className="text-xs" style={{ color: isValid ? 'var(--accent)' : '#FF9500' }}>
-                  {isValid ? 'hillsum.app/room/' + createName : 'Min 3 characters, letters/numbers/hyphens only'}
+                  {isValid ? 'lockdin.app/room/' + createName : 'Min 3 characters, letters/numbers/hyphens only'}
                 </p>
               )}
               {createError && <p className="text-xs text-red-500">{createError}</p>}

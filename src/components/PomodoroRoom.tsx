@@ -89,8 +89,8 @@ export default function PomodoroRoom({
   useEffect(() => {
     const mm = String(Math.floor(secondsLeft / 60)).padStart(2, '0')
     const ss = String(secondsLeft % 60).padStart(2, '0')
-    document.title = running ? `${mm}:${ss} — hillsum` : `${mm}:${ss} (paused) — hillsum`
-    return () => { document.title = 'hillsum' }
+    document.title = running ? `${mm}:${ss} — lockdin` : `${mm}:${ss} (paused) — lockdin`
+    return () => { document.title = 'lockdin' }
   }, [secondsLeft, running])
 
   useEffect(() => {

@@ -9,7 +9,7 @@ const inter = Inter({
 })
 
 export const metadata: Metadata = {
-  title: 'Hillsum',
+  title: 'lockdin',
   description: 'Focus together.',
   icons: {
     icon: '/favicon.svg',

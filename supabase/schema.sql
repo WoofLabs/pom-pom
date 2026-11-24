@@ -1,5 +1,5 @@
 -- ============================================================
--- hillsum1 — Supabase Schema
+-- lockdin — Supabase Schema
 -- Run this in your Supabase project: SQL Editor → New Query
 -- ============================================================
 
